@@ -1,0 +1,32 @@
+{% load static %}
+<div class="small-container cart-page">
+    {% if cart %}
+    <table>
+        <tbody><tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Subtotal</th>
+        </tr>
+        {% for cart_item in cart.added_item.all %}
+        <tr>
+            <td>
+                <div class="cart-info">
+                    <img src="{{ cart_item.product.images.url }}">
+                    <div>
+                        <p>{{ cart_item.product.title.url }}</p>
+                        <small>Price:{{ cart_item.product.price.url }}</small>
+                        <br>
+                        <a href="">Remove</a>
+                    </div>
+                </div>
+            </td>
+            <td><input type="number"  disabled value="{{ cart_item.quantity }}"></td>
+            <td>${{ cart_item.product.price }}</td>
+        </tr>
+        {% endfor %}
+        </tbody></table>
+    </div>
+    {% else %}
+    <p>Cart is empty</p>
+    {% endif %}
+</div>
